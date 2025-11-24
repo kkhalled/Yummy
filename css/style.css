@@ -1,34 +1,51 @@
+/* style.css */
+
 body {
-  background-color: #0d0d0d;
-  color: #f9f6f6;
-  overflow-x: hidden; /* منع التمرير الجانبي */
+  background-color: #0f0f0f;
+  color: white;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
 }
 
-:root{
-  --bg: #0f0f0f;
-  --white: #ffffff;
-  --muted: #cfcfcf;
-  --accent: #8be7f5;
-  --chip-bg: #c7f0f6;
-  --chip-text: #032;
-  --radius: 12px;
-  --max-width: 1200px;
+/* loader */
+.app-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #030303;
+  color: #fff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* SIDE NAV */
+.app-loader.hidden {
+  display: none;
+}
+
+.loader-content {
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+}
+
+/* side menu */
 .side-nav {
   position: fixed;
   top: 0;
-  left: -250px; /* مخفي أول ما الصفحة تفتح */
+  left: -250px;
   width: 250px;
   height: 100vh;
   background: #222;
-  transition: left 0.4s ease;
+  transition: 0.4s;
   z-index: 99;
 }
 
 .side-nav.open {
-  left: 0; /* يظهر بسلاسة */
+  left: 0;
 }
 
 .nav-tab {
@@ -38,20 +55,61 @@ body {
   height: 100%;
 }
 
-/* NAV HEADER */
+.side-nav ul li {
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.side-nav.open ul li {
+  animation: slideIn 0.4s forwards;
+}
+
+.side-nav.open ul li:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.side-nav.open ul li:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.side-nav.open ul li:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.side-nav.open ul li:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.side-nav.open ul li:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.side-nav.open ul li:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* left bar */
 .nav-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 60px;
   height: 100vh;
-  background: white;
+  background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0.5rem;
-  transition: transform 0.4s ease;
+  transition: 0.4s;
   z-index: 100;
 }
 
@@ -62,22 +120,20 @@ body {
 .logo {
   width: 50px;
 }
-i {
-  cursor: pointer;
-}
-.cursor-pointer {
+
+.open-close-icon {
   cursor: pointer;
 }
 
-/* search */
-.my-place::placeholder {
-  color: #888;
-  opacity: 1;
-}
-
-/* meals  in home */
+/* meal cards */
 .meal {
   cursor: pointer;
+  position: relative;
+}
+
+.meal img {
+  width: 100%;
+  border-radius: 10px;
 }
 
 .meal-layer {
@@ -87,112 +143,234 @@ i {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
-  transition: top 0.4s ease-in-out;
-
+  transition: 0.4s;
   display: flex;
-  align-items: center; /* Center vertically */
-  justify-content: flex-start; /* Move content to the left */
-  padding-left: 10px; /* Add spacing from left */
-  text-align: left !important; /* Force text alignment */
+  align-items: center;
+  padding-left: 10px;
 }
 
 .meal:hover .meal-layer {
   top: 0;
 }
 
-.meal-layer h3 {
-  margin: 0;
-  text-align: left !important; /* Force override in case Bootstrap centers it */
+.meal-layer h5 {
+  text-align: left;
+}
+
+/* meal detail page */
+#detailImg {
   width: 100%;
+  border-radius: 12px;
 }
 
-.meal:hover .meal-layer h3 {
-  opacity: 1;
-}
-
-/* meal details */
-/* meal-detail-bootstrap.css — updated */
-
-/* theme variables */
-
-
-/* page wrapper transparent */
-.page { background: transparent; }
-
-/* container width */
-.container.w-75 { max-width: var(--max-width); }
-
-/* image styling */
-.ratio.ratio-1x1 {
-  border-radius: .75rem;
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-}
-.ratio img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-/* title under image */
 #meal-title {
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.35rem;
-  margin-top: .8rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 15px;
 }
 
-/* INSTRUCTIONS — now white and slightly smaller */
-#meal-instructions,
-.meal-instructions {
-  color: var(--white) !important; /* changed to white */
-  font-size: 0.92rem !important; /* made smaller */
-  line-height: 1.55;
+#meal-instructions {
+  color: white;
+  line-height: 1.6;
   text-align: justify;
-  opacity: .9;
 }
 
-/* headings */
-.text-white,
-h3.text-white,
-.fw-bold.text-white {
-  color: var(--white) !important;
-}
-
-h3 { margin-bottom: .6rem; }
-
-/* Area & Category — now fully white */
-#meal-area,
-#meal-category {
-  color: var(--white) !important;
-  font-weight: 600;
-}
-
-/* ingredients chips */
 .ingredient-chip {
-  background: var(--chip-bg) !important;
-  color: var(--chip-text) !important;
+  background: #c7f0f6;
+  color: #032;
   padding: 8px 12px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
-  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  display: inline-block;
 }
 
-/* chips wrapper */
 #meal-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
 }
 
-/* buttons */
-.btn-success.btn-sm,
-.btn-danger.btn-sm {
-  padding: .45rem .7rem;
-  font-weight: 700;
-  border-radius: .55rem;
-  font-size: .9rem;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+/* categories */
+.category {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
+.category img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.category-layer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  padding: 15px;
+  text-align: center;
+  transition: 0.4s;
+}
+
+.category:hover .category-layer {
+  top: 0;
+}
+
+.category-layer h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.category-layer p {
+  font-size: 14px;
+}
+
+/* area boxes */
+.area-box {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.area-box i {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.area-box h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ingredients */
+.ingredient-card {
+  text-align: center;
+  color: white;
+  padding: 30px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ingredient-card i {
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.ingredient-card h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.ingredient-card .ing-desc {
+  color: #cfcfcf;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  min-height: 50px;
+}
+
+/* search inputs */
+.my-place::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* contact form */
+#contactForm input {
+  background: transparent;
+  border: 1px solid #555;
+  color: white;
+}
+
+#contactForm input:focus {
+  background: transparent;
+  color: white;
+  border-color: #8be7f5;
+}
+
+/* loading animation */
+.loader {
+  color: #fff;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  animation: spin 1.3s infinite linear;
+}
+
+@keyframes spin {
+  0%, 100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, 
+    -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 
+    2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, 
+    -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 
+    2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, 
+    -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 
+    2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, 
+    -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 
+    2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, 
+    -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, 
+    -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, 
+    -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, 
+    -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+
+/* mobile responsive */
+@media (max-width: 992px) {
+  .ingredient-card i {
+    font-size: 3.5rem;
+  }
+  
+  .ingredient-card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .area-box i {
+    font-size: 3rem;
+  }
+}
+
+/* utility classes */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-muted {
+  color: #999;
+}
