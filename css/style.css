@@ -1,0 +1,198 @@
+body {
+  background-color: #0d0d0d;
+  color: #f9f6f6;
+  overflow-x: hidden; /* منع التمرير الجانبي */
+}
+
+:root{
+  --bg: #0f0f0f;
+  --white: #ffffff;
+  --muted: #cfcfcf;
+  --accent: #8be7f5;
+  --chip-bg: #c7f0f6;
+  --chip-text: #032;
+  --radius: 12px;
+  --max-width: 1200px;
+}
+
+/* SIDE NAV */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -250px; /* مخفي أول ما الصفحة تفتح */
+  width: 250px;
+  height: 100vh;
+  background: #222;
+  transition: left 0.4s ease;
+  z-index: 99;
+}
+
+.side-nav.open {
+  left: 0; /* يظهر بسلاسة */
+}
+
+.nav-tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* NAV HEADER */
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  transition: transform 0.4s ease;
+  z-index: 100;
+}
+
+.nav-header.shifted {
+  transform: translateX(250px);
+}
+
+.logo {
+  width: 50px;
+}
+i {
+  cursor: pointer;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* search */
+.my-place::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+/* meals  in home */
+.meal {
+  cursor: pointer;
+}
+
+.meal-layer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: top 0.4s ease-in-out;
+
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Move content to the left */
+  padding-left: 10px; /* Add spacing from left */
+  text-align: left !important; /* Force text alignment */
+}
+
+.meal:hover .meal-layer {
+  top: 0;
+}
+
+.meal-layer h3 {
+  margin: 0;
+  text-align: left !important; /* Force override in case Bootstrap centers it */
+  width: 100%;
+}
+
+.meal:hover .meal-layer h3 {
+  opacity: 1;
+}
+
+/* meal details */
+/* meal-detail-bootstrap.css — updated */
+
+/* theme variables */
+
+
+/* page wrapper transparent */
+.page { background: transparent; }
+
+/* container width */
+.container.w-75 { max-width: var(--max-width); }
+
+/* image styling */
+.ratio.ratio-1x1 {
+  border-radius: .75rem;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+.ratio img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* title under image */
+#meal-title {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-top: .8rem;
+}
+
+/* INSTRUCTIONS — now white and slightly smaller */
+#meal-instructions,
+.meal-instructions {
+  color: var(--white) !important; /* changed to white */
+  font-size: 0.92rem !important; /* made smaller */
+  line-height: 1.55;
+  text-align: justify;
+  opacity: .9;
+}
+
+/* headings */
+.text-white,
+h3.text-white,
+.fw-bold.text-white {
+  color: var(--white) !important;
+}
+
+h3 { margin-bottom: .6rem; }
+
+/* Area & Category — now fully white */
+#meal-area,
+#meal-category {
+  color: var(--white) !important;
+  font-weight: 600;
+}
+
+/* ingredients chips */
+.ingredient-chip {
+  background: var(--chip-bg) !important;
+  color: var(--chip-text) !important;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+}
+
+/* chips wrapper */
+#meal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* buttons */
+.btn-success.btn-sm,
+.btn-danger.btn-sm {
+  padding: .45rem .7rem;
+  font-weight: 700;
+  border-radius: .55rem;
+  font-size: .9rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
